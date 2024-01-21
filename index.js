@@ -6,7 +6,8 @@ const inputTitle = document.querySelector("#title");
 const inputAuthor = document.querySelector("#author");
 const inputPages = document.querySelector("#pages");
 const divBook = document.querySelector(".library");
-const toggleBtn = document.querySelector(".toggle");
+//toggle button
+let active = false;
 
 const myLibrary = [];
 
@@ -17,7 +18,16 @@ function Book(title, author, pages) {
 }
 
 Book.prototype.Isread = function () {
-  return `${this.title} by ${this.author} of ${this.pages}`;
+  let toggle = document.querySelector(".toggle");
+  let text = document.querySelector(".text");
+  active = !active;
+  if (active) {
+    toggle.classList.add("active");
+    text.innerHTML = "read";
+  } else {
+    toggle.classList.remove("active");
+    text.innerHTML = "Not read";
+  }
 };
 
 btn.addEventListener("click", () => {
@@ -37,8 +47,6 @@ function addBookToLibrary() {
 
   myLibrary.push(newBook);
 }
-//action element for the toggle btn
-let active = false;
 
 function displayer() {
   divBook.textContent = "";
@@ -49,11 +57,25 @@ function displayer() {
     let btn = document.createElement("button");
     btn.textContent = "Delete Book";
     content.appendChild(btn);
+    // toggle button
+    let toggleBtn = document.createElement(`button`);
+    toggleBtn.classList.add("toggle");
+    let toggleBtn2 = document.createElement("div");
+    toggleBtn2.classList.add("circle");
+    let toggleBtn3 = document.createElement("span");
+    // event
+    toggleBtn.addEventListener("click", Toggler);
+    // appends
+    content.appendChild(toggleBtn3);
+    toggleBtn.appendChild(toggleBtn2);
+    content.appendChild(toggleBtn);
+  
+    // deleter
     btn.addEventListener("click", () => {
       content.removeChild(btn);
       divBook.removeChild(content);
     });
-    // toggle button
+
     divBook.appendChild(content);
   }
 }
@@ -63,10 +85,15 @@ form.addEventListener("submit", () => {
   displayer();
 });
 
-function toggle() {
+function Toggler() {
   let toggle = document.querySelector(".toggle");
+  let text = document.querySelector(".text");
   active = !active;
   if (active) {
     toggle.classList.add("active");
+    text.innerHTML = "read";
+  } else {
+    toggle.classList.remove("active");
+    text.innerHTML = "Not read";
   }
 }
