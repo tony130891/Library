@@ -5,7 +5,8 @@ const btnCancel = document.querySelector("#js-close");
 const inputTitle = document.querySelector("#title");
 const inputAuthor = document.querySelector("#author");
 const inputPages = document.querySelector("#pages");
-const tableEl = document.querySelector(".table");
+const divBook = document.querySelector(".library");
+const toggleBtn = document.querySelector(".toggle");
 
 const myLibrary = [];
 
@@ -28,27 +29,44 @@ btnCancel.addEventListener("click", (e) => {
   dialog.close();
 });
 
-const book2 = new Book("grinch", "man", 15);
-const book3 = new Book("souless", "Robot", 10);
-
 function addBookToLibrary() {
-  //let title = inputTitle.value;
-  //let author = inputAuthor.value;
-  //let pages = inputPages.value;
-  //let newBook = new Book(author, title, pages);
-  myLibrary.push(book2);
-  myLibrary.push(book3);
+  let title = inputTitle.value;
+  let author = inputAuthor.value;
+  let pages = inputPages.value;
+  let newBook = new Book(title, author, pages);
 
-  for (let row = 0; row < 1; row++) {
-    let tableRow = document.createElement("tr");
-    for (let cells = 0; cells < 3; cells++) {
-      let td = document.createElement("td");
-      tableRow.appendChild(td);
-    }
-    tableEl.appendChild(tableRow);
+  myLibrary.push(newBook);
+}
+//action element for the toggle btn
+let active = false;
+
+function displayer() {
+  divBook.textContent = "";
+  for (let book of myLibrary) {
+    let content = document.createElement("div");
+    content.textContent = `${book.title}, ${book.author}, ${book.pages}`;
+    // delete button
+    let btn = document.createElement("button");
+    btn.textContent = "Delete Book";
+    content.appendChild(btn);
+    btn.addEventListener("click", () => {
+      content.removeChild(btn);
+      divBook.removeChild(content);
+    });
+    // toggle button
+    divBook.appendChild(content);
   }
 }
 
 form.addEventListener("submit", () => {
   addBookToLibrary();
+  displayer();
 });
+
+function toggle() {
+  let toggle = document.querySelector(".toggle");
+  active = !active;
+  if (active) {
+    toggle.classList.add("active");
+  }
+}
