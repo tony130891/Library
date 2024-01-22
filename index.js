@@ -19,7 +19,7 @@ function Book(title, author, pages) {
 
 Book.prototype.Isread = function () {
   let toggle = document.querySelector(".toggle");
-  let text = document.querySelector(".text");
+  let text = document.querySelector("span");
   active = !active;
   if (active) {
     toggle.classList.add("active");
@@ -52,7 +52,11 @@ function displayer() {
   divBook.textContent = "";
   for (let book of myLibrary) {
     let content = document.createElement("div");
-    content.textContent = `${book.title}, ${book.author}, ${book.pages}`;
+    content.classList.add("text");
+    content.textContent = `
+    ${book.title},
+    ${book.author}, 
+    ${book.pages}`;
     // delete button
     let btn = document.createElement("button");
     btn.textContent = "Delete Book";
@@ -65,17 +69,14 @@ function displayer() {
     let toggleBtn3 = document.createElement("span");
     // event
     toggleBtn.addEventListener("click", Toggler);
-    // appends
-    content.appendChild(toggleBtn3);
-    toggleBtn.appendChild(toggleBtn2);
-    content.appendChild(toggleBtn);
-  
-    // deleter
+
     btn.addEventListener("click", () => {
-      content.removeChild(btn);
       divBook.removeChild(content);
     });
-
+    // appends
+    content.appendChild(toggleBtn);
+    content.appendChild(toggleBtn3);
+    toggleBtn.appendChild(toggleBtn2);
     divBook.appendChild(content);
   }
 }
@@ -87,11 +88,11 @@ form.addEventListener("submit", () => {
 
 function Toggler() {
   let toggle = document.querySelector(".toggle");
-  let text = document.querySelector(".text");
+  let text = document.querySelector("span");
   active = !active;
   if (active) {
     toggle.classList.add("active");
-    text.innerHTML = "read";
+    text.innerHTML = "Read";
   } else {
     toggle.classList.remove("active");
     text.innerHTML = "Not read";

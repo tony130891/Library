@@ -54,7 +54,7 @@ input {
 
 .library div {
   display: flex;
-  margin: 10px;
+  margin: 5px;
   border: 2px solid black;
   align-items: center;
   flex-direction: column;
@@ -73,6 +73,7 @@ input {
 .circle {
   position: absolute;
   left: 0;
+  margin-top: 0;
   width: 20px;
   height: 20px;
   border-radius: 20px;
@@ -91,3 +92,16 @@ input {
   background-color: rgb(85, 227, 180);
 }
 
+span {
+  font-size: 23px;
+  color: #494949;
+}
+
+.active+.span {
+  color: rgb(85, 227, 180);
+}
+
+.text {
+  font-size: 22px;
+  color: #494949;
+}
