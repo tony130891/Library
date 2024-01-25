@@ -7,6 +7,7 @@ body {
   color: black;
   background-size: 98%;
   opacity: 92%;
+  background-image: url("antique-clock-1539249.jpg");
 }
 
 dialog {
@@ -25,12 +26,13 @@ dialog {
   display: grid;
   grid-template-rows: 120px;
   height: 100vh;
-  width: 100vw;
 }
 
 .boxTitle{
   grid-column: 1 / 5;
   justify-self: center;
+  color: black;
+  opacity: 99%;
 }
 
 form button {
@@ -102,6 +104,14 @@ span {
 }
 
 .text {
-  font-size: 22px;
-  color: #494949;
+  font-size: 23px;
+  color: rgb(238, 224, 224);
+}
+
+#delete {
+  color: white;
+  background-color: black;
+  border-radius: 10px;
+  font-size: 19px;
+  margin: 8px;
 }
