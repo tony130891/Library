@@ -70,6 +70,10 @@ function displayer() {
     toggleBtn2.classList.add("circle");
     let toggleBtn3 = document.createElement("span");
     // event
+    btnDeleter.addEventListener("click", () => {
+      myLibrary.splice(index, 1);
+      divBook.removeChild(content);
+    });
     toggleBtn.addEventListener("click", Toggler);
     // appends
     content.appendChild(toggleBtn);
@@ -96,4 +100,3 @@ function Toggler() {
     text.innerHTML = "Not read";
   }
 }
-
