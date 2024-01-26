@@ -1,4 +1,4 @@
-*{
+* {
   margin: 3px;
   padding: 0;
 }
@@ -28,7 +28,7 @@ dialog {
   height: 100vh;
 }
 
-.boxTitle{
+.boxTitle {
   grid-column: 1 / 5;
   justify-self: center;
   color: black;
@@ -60,54 +60,6 @@ input {
   border: 2px solid black;
   align-items: center;
   flex-direction: column;
-}
-
-.toggle {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  height: 40px;
-  justify-content: center;
-  margin: 0 auto;
-  position: relative;
-  width: 70px;
-}
-
-.circle {
-  position: absolute;
-  left: 0;
-  margin-top: 0;
-  width: 25px;
-  height: 25px;
-  border-radius: 20px;
-  background-color: #494949;
-  transition: .3s;
-}
-
-.box-bg {
-  background-color: white;
-  height: 15px;
-  width: 90%;
-  }
-
-span {
-  font-size: 23px;
-  color: #494949;
-}
-
-.active {
-  border-color: rgb(85, 227, 180);
-}
-
-.active .circle {
-  left: 100%;
-  transform: translateX(-100%);
-  transition: .3s;
-  background-color: rgb(85, 227, 180);
-}
-
-.active + .span {
-  color: rgb(85, 227, 180);
 }
 
 .text {

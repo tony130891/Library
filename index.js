@@ -5,30 +5,17 @@ const btnCancel = document.querySelector("#js-close");
 const inputTitle = document.querySelector("#title");
 const inputAuthor = document.querySelector("#author");
 const inputPages = document.querySelector("#pages");
+const inputRead = document.querySelector("#readCheck");
 const divBook = document.querySelector(".library");
-//toggle button
-let active = false;
 
 const myLibrary = [];
 
-function Book(title, author, pages) {
+function Book(title, author, pages, read) {
   this.title = title;
   this.author = author;
   this.pages = pages;
+  this.read = read ? "Read" : "Not read";
 }
-
-Book.prototype.Isread = function () {
-  let toggle = document.querySelector(".toggle");
-  let text = document.querySelector("span");
-  active = !active;
-  if (active) {
-    toggle.classList.add("active");
-    text.innerHTML = "read";
-  } else {
-    toggle.classList.remove("active");
-    text.innerHTML = "Not read";
-  }
-};
 
 btn.addEventListener("click", () => {
   dialog.showModal();
@@ -43,7 +30,8 @@ function addBookToLibrary() {
   let title = inputTitle.value;
   let author = inputAuthor.value;
   let pages = inputPages.value;
-  let newBook = new Book(title, author, pages);
+  let read = inputRead.checked;
+  let newBook = new Book(title, author, pages, read);
 
   myLibrary.push(newBook);
 }
@@ -63,25 +51,16 @@ function displayer() {
     btnDeleter.setAttribute("id", "delete");
     btnDeleter.textContent = "Delete Book";
     content.appendChild(btnDeleter);
-    // toggle button
-    let toggleBtn = document.createElement(`div`);
-    toggleBtn.classList.add("toggle");
-    let toggleBtn4 = document.createElement("button");
-    toggleBtn4.classList.add("box-bg");
-    let toggleBtn2 = document.createElement("div");
-    toggleBtn2.classList.add("circle");
-    let toggleBtn3 = document.createElement("span");
+    // readText
+    let readText = document.createElement(`h2`);
+    readText.textContent = `Status: ${bookArr.read}`;
     // event
     btnDeleter.addEventListener("click", () => {
       myLibrary.splice(index, 1);
       divBook.removeChild(content);
     });
-    //toggleBtn.addEventListener("click", ());
     // appends
-    content.appendChild(toggleBtn);
-    content.appendChild(toggleBtn3);
-    toggleBtn.appendChild(toggleBtn2);
-    toggleBtn.appendChild(toggleBtn4);
+    content.appendChild(readText);
     divBook.appendChild(content);
   });
 }
@@ -90,17 +69,3 @@ form.addEventListener("submit", () => {
   addBookToLibrary();
   displayer();
 });
-
-function Toggler() {
-  
-  let toggle = document.querySelector(".toggle");
-  let text = document.querySelector("span");
-  active = !active;
-  if (active) {
-    toggle.classList.add("active");
-    text.innerHTML = "Read";
-  } else {
-    toggle.classList.remove("active");
-    text.innerHTML = "Not read";
-  }
-}
