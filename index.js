@@ -64,8 +64,10 @@ function displayer() {
     btnDeleter.textContent = "Delete Book";
     content.appendChild(btnDeleter);
     // toggle button
-    let toggleBtn = document.createElement(`button`);
+    let toggleBtn = document.createElement(`div`);
     toggleBtn.classList.add("toggle");
+    let toggleBtn4 = document.createElement("button");
+    toggleBtn4.classList.add("box-bg");
     let toggleBtn2 = document.createElement("div");
     toggleBtn2.classList.add("circle");
     let toggleBtn3 = document.createElement("span");
@@ -74,11 +76,12 @@ function displayer() {
       myLibrary.splice(index, 1);
       divBook.removeChild(content);
     });
-    toggleBtn.addEventListener("click", Toggler);
+    //toggleBtn.addEventListener("click", ());
     // appends
     content.appendChild(toggleBtn);
     content.appendChild(toggleBtn3);
     toggleBtn.appendChild(toggleBtn2);
+    toggleBtn.appendChild(toggleBtn4);
     divBook.appendChild(content);
   });
 }
@@ -89,6 +92,7 @@ form.addEventListener("submit", () => {
 });
 
 function Toggler() {
+  
   let toggle = document.querySelector(".toggle");
   let text = document.querySelector("span");
   active = !active;

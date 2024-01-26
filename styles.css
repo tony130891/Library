@@ -63,24 +63,36 @@ input {
 }
 
 .toggle {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 40px;
+  justify-content: center;
+  margin: 0 auto;
   position: relative;
-  width: 40px;
-  height: 20px;
-  border: 2px solid #494949;
-  border-radius: 20px;
-  cursor: pointer;
-  transition: .3s;
+  width: 70px;
 }
 
 .circle {
   position: absolute;
   left: 0;
   margin-top: 0;
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
   border-radius: 20px;
   background-color: #494949;
   transition: .3s;
+}
+
+.box-bg {
+  background-color: white;
+  height: 15px;
+  width: 90%;
+  }
+
+span {
+  font-size: 23px;
+  color: #494949;
 }
 
 .active {
@@ -94,12 +106,7 @@ input {
   background-color: rgb(85, 227, 180);
 }
 
-span {
-  font-size: 23px;
-  color: #494949;
-}
-
-.active+.span {
+.active + .span {
   color: rgb(85, 227, 180);
 }
 
