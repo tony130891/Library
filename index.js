@@ -53,7 +53,7 @@ function displayer() {
     content.appendChild(btnDeleter);
     // readText
     let readText = document.createElement(`h2`);
-    readText.textContent = `Status: ${bookArr.read}`;
+    readText.textContent = `${bookArr.read}`;
     // event
     btnDeleter.addEventListener("click", () => {
       myLibrary.splice(index, 1);
