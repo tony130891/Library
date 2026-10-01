@@ -7,6 +7,7 @@ const inputAuthor = document.querySelector("#author");
 const inputPages = document.querySelector("#pages");
 const inputRead = document.querySelector("#readCheck");
 const divBook = document.querySelector(".library");
+const errorMsg = document.querySelector('span.error');
 
 const myLibrary = [];
 
@@ -42,10 +43,16 @@ function displayer() {
     let content = document.createElement("div");
     content.classList.add("text");
     content.setAttribute("data-book", index);
-    content.textContent = `
-    ${bookArr.title},
-    ${bookArr.author}, 
-    ${bookArr.pages}`;
+    let divTitle = document.createElement('h3');
+    let divAuthor = document.createElement('h3');
+    let divPage = document.createElement('h3');
+    divTitle.textContent = `Tittle: ${bookArr.title[0].toUpperCase()}${bookArr.title.slice(1)}`;
+    divAuthor.textContent = `
+    Author: ${bookArr.author[0].toUpperCase()}${bookArr.author.slice(1)}`
+    divPage.textContent = `Pages: ${bookArr.pages}`;
+    content.appendChild(divTitle);
+    content.appendChild(divAuthor);
+    content.appendChild(divPage);
     // delete button
     let btnDeleter = document.createElement("button");
     btnDeleter.setAttribute("id", "delete");
@@ -65,7 +72,79 @@ function displayer() {
   });
 }
 
-form.addEventListener("submit", () => {
+
+inputTitle.addEventListener('input', (e) => {
+  if(inputTitle.validity.valid) {
+    errorMsg.textContent = "";
+    errorMsg.className = 'error';
+  } else {
+    checkTitle();
+  }
+});
+
+inputAuthor.addEventListener('input', (e) => {
+  if(inputAuthor.validity.valid) {
+    errorMsg.textContent = "";
+    errorMsg.className = 'error';
+  } else {
+    checkAuthor();
+  }
+});
+
+inputPages.addEventListener('input', (e) => {
+  if(inputPages.validity.valid) {
+    errorMsg.textContent = "";
+    errorMsg.className = "error";
+  } else {
+    checkPages()
+  }
+});
+
+
+form.addEventListener("submit", (e) => {
+  if(!inputTitle.validity.valid) {
+    checkTitle();
+    e.preventDefault();
+  }  
   addBookToLibrary();
   displayer();
 });
+
+
+function checkTitle() {
+  
+  if(inputTitle.validity.valueMissing) {
+    errorMsg.textContent = 'The title is missing!';
+  } else if(inputTitle.validity.tooShort) {
+    errorMsg.textContent = 'Atleast 2 characters';
+  } else if(inputTitle.validity.tooLong) {
+    errorMsg.textContent = 'It exceeds the 15 characters';
+  }
+
+  errorMsg.className = 'error active';
+}
+
+function checkAuthor() {
+  
+  if(inputAuthor.validity.valueMissing) {
+    errorMsg.textContent = 'The title is missing!';
+  } else if(inputAuthor.validity.tooShort) {
+    errorMsg.textContent = 'Atleast 2 characters';
+  } else if(inputAuthor.validity.tooLong) {
+    errorMsg.textContent = 'It exceeds the 15 characters';
+  }
+
+  errorMsg.className = 'error active';
+
+}
+
+function checkPages() {
+
+  if(inputPages.validity.valueMissing) {
+    errorMsg.textContent = 'you need to put atleast one page';
+  } else if(inputPages.validity.rangeUnderFlow) {
+    errorMsg.textContent = 'You had to have read atleast 1 page';
+  } else {
+    errorMsg.className = 'error active';
+  }
+}
