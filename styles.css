@@ -58,7 +58,7 @@ input {
   display: flex;
   margin: 5px;
   border: 2px solid black;
-  align-items: center;
+  align-items: stretch;
   flex-direction: column;
 }
 
@@ -73,4 +73,30 @@ input {
   border-radius: 10px;
   font-size: 19px;
   margin: 8px;
+}
+
+input:user-valid {
+  border: 2px solid green;
+  background-color: #f0fff0;
+}
+
+input:user-invalid {
+  border: 2px solid red;
+  background-color: #fff0f0;
+}
+
+.error {
+  width: 100%;
+  padding: 0;
+
+  font-size: 80%;
+  color: white;
+  background-color: #990000;
+  border-radius: 0 0 5px 5px;
+
+  box-sizing: border-box;
+}
+
+.error.active {
+  padding: 0.3em;
 }
